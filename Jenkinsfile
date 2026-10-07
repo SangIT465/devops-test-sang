@@ -5,6 +5,13 @@ pipeline {
         skipDefaultCheckout(true)
     }
 
+    environment {
+        PROJECT    = 'devops-test'
+        BRANCH     = 'main'
+        SITE_URL   = 'http://localhost:8081'
+        DEPLOY_DIR = 'D:\\deploy\\devops-test'
+    }
+
     stages {
 
         stage('Checkout') {
@@ -27,7 +34,13 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                echo 'Deploy website'
+                bat '''
+                    if not exist "%DEPLOY_DIR%" mkdir "%DEPLOY_DIR%"
+                    copy /Y index.html "%DEPLOY_DIR%\\index.html"
+                    copy /Y style.css "%DEPLOY_DIR%\\style.css"
+                    copy /Y script.js "%DEPLOY_DIR%\\script.js"
+                '''
+                echo "Deployed to ${SITE_URL}"
             }
         }
     }
