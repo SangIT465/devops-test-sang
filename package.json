@@ -1,0 +1,12 @@
+{
+  "name": "devops-test-sang",
+  "version": "1.0.0",
+  "description": "DevOps CI/CD test project",
+  "main": "index.html",
+  "scripts": {
+    "build": "node build.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
