@@ -9,7 +9,7 @@ pipeline {
         PROJECT    = 'devops-test'
         BRANCH     = 'main'
         SITE_URL   = 'http://localhost:8081'
-        DEPLOY_DIR = 'D:\\deploy\\devops-test'
+        DEPLOY_DIR = 'C:\\deploy\\devops-test'
     }
 
     stages {
@@ -33,16 +33,16 @@ pipeline {
         }
 
         stage('Deploy') {
-            steps {
-                bat '''
-                    if not exist "%DEPLOY_DIR%" mkdir "%DEPLOY_DIR%"
-                    copy /Y index.html "%DEPLOY_DIR%\\index.html"
-                    copy /Y style.css "%DEPLOY_DIR%\\style.css"
-                    copy /Y script.js "%DEPLOY_DIR%\\script.js"
-                '''
-                echo "Deployed to ${SITE_URL}"
-            }
-        }
+    steps {
+        bat '''
+            if not exist "%DEPLOY_DIR%" mkdir "%DEPLOY_DIR%"
+            copy /Y index.html "%DEPLOY_DIR%\\index.html"
+            copy /Y style.css "%DEPLOY_DIR%\\style.css"
+            copy /Y script.js "%DEPLOY_DIR%\\script.js"
+        '''
+        echo "Deployed to ${SITE_URL}"
+    }
+}
     }
 
     post {
